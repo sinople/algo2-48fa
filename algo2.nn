@@ -80,7 +80,7 @@ Quel est le coût amortie de la fonction incr ?
 le bit de poids faible est à 0, le coût est alors constant. \
 **pire cas** \
 tout les bits sont à un, il faut donc parcourir tout le nombre pour propager la retenue, coût : $$O(n)$$. \
-**cout amortit** \
+**coût amortit** \
 Sur k appels à incr, comptons le nombre de fois oû le bit i change de valeur. \
 le bit 1 change à chaque appel de incr donc k fois \
 le bit 2 change une fois sur deux donc $$ int(k/2)$$ , (int : partie entière inférieure). \
