@@ -49,13 +49,13 @@ $$a |g(x)| < |f(x)| < a |g(x)|$$
 
 - **Coût en moyenne** : c'est la moyenne de tous les coûts possible, pondéré par leur probabilité.
 
-- **Coût amortie** : c'est le nombre d'opération moyen effectué lors d'appel multiple d'un algorithme.
+- **Coût amorti** : c'est le nombre d'opération moyen effectué lors d'appel multiple d'un algorithme.
 
 
 
-### Coût amortie
+### Coût amorti
 
-Il existe deux méthodes pour calculer le coût amortie d'un algorithme, la
+Il existe deux méthodes pour calculer le coût amorti d'un algorithme, la
 méthode par agrégats et la méthode par potentiel.
 
 
@@ -64,15 +64,15 @@ méthode par agrégats et la méthode par potentiel.
 
 Dans l'analyse par agrégat on va montrer que pour toutes suites de n opérations
 on prend un temps $$T_n$$ et calculer le rapport $$\frac{T_n}{n}$$, c'est le
-coût amortie.
+coût amorti.
 
 
 
 #### Méthode par potentiels
 
 A chaque série de i opérations on associe une valeur $$\phi _i$$ qui est le
-potentiel en i.  Le coût amortie de l'opération i est alors : $$C_i^{amortie} =
-C_i+ \phi _i - \phi _{i-1}$$ \ le coût amortie des n opérations est :
+potentiel en i.  Le coût amorti de l'opération i est alors : $$C_i^{amortie} =
+C_i+ \phi _i - \phi _{i-1}$$ \ le coût amorti des n opérations est :
 $$C_{amortie} = \sum_{i=1}^n C_i^{amortie} = \sum_{i=1}^n (C_i+ \phi _i - \phi
 _{i-1}) = \sum_{i=1}^n C_i+ \phi _n - \phi _{0}$$
 
@@ -119,7 +119,7 @@ Tant que a != x et k <= n Faire:
 ~~~ question
 
 Soit incr, la fonction incrémentant de un un nombre binaire sur n bits. Quel est
-le pire cas, le meilleur cas ?  Quel est le coût amortie de la fonction incr ?
+le pire cas, le meilleur cas ?  Quel est le coût amorti de la fonction incr ?
 
 ~~~
 
@@ -130,16 +130,51 @@ le pire cas, le meilleur cas ?  Quel est le coût amortie de la fonction incr ?
 - **pire cas** tout les bits sont à un, il faut donc parcourir tout le nombre
     pour propager la retenue, coût : $$O(n)$$.
 
-- **coût amortit** : Sur k appels à incr, comptons le nombre de fois oû le bit i
+- **coût amorti** : Sur k appels à incr, comptons le nombre de fois oû le bit i
   change de valeur.
 
   le bit 1 change à chaque appel de incr donc k fois le bit 2 change une fois
   sur deux donc $$ int(k/2)$$ , (int : partie entière inférieure).
 
-  donc le bit i change de valeur $$int(\frac{k}{2^{i-1}})$$ D’où : $$C_{amortie}
+  donc le bit i change de valeur $$int(\frac{k}{2^{i-1}})$$ D’où : $$C_{amorti}
   = \frac{1}{k} \sum_{i=1}^{k} int(\frac{k}{2^{i-1}}) \leq \sum_{i>0}
   \frac{1}{2^{i-1}} \leq 2$$
 
-  Le coût amortie est donc en $$O(1)$$.
+  Le coût amorti est donc en $$O(1)$$.
 
 ~~~
+
+## Structures de données
+
+Il existe différentes façon de traiter des données, chacunes ayant leurs caractéristiques.
+Pour chaque structures de données on doit pouvoir rechercher, insérer, supprimer un élément.
+Cette partie traitera différentes structures et le coût des fonctions rechercher, insérer et supprimer..
+
+### Tableau
+
+Cette structures permet de stocker des données dans un espace prédéfini.
+Chaque tableau prend une place dans la mémoire, défini lors de la création du tableau.
+Selon si le tableau est trié ou non les différentes opérations ne prennent pas le même temps.
+
+
+Cas du tableau non trié : 
+- insertion : $$O(1)$$
+- recherche : $$O(n)$$
+- suppression : $$O(n)$$ ( car il faut d'abord trouver l'élement puis décaler les éléments les plus à droites)
+
+
+Cas du tableau trié : 
+- insertion : $$O(n)$$ 
+- recherche : $$O(log(n))$$ (recherche par dichotomie)
+- suppression : $$O(n)$$
+
+
+### Listes
+
+
+
+### Arbres
+
+#### ABR (Arbre Binaire de Recherche)
+
+#### AVL
