@@ -11,22 +11,30 @@
 
 ## Analyse du coût d'un algorithme
 
-### Qu'est ce la complexité ?
+### La complexité
 
-Un programme informatique utilise de la mémoire, consomme de l'énergie et prend
-un certain temps à l’exécution, c'est la complexité d'un algorithme. Dans la
-suite de ce cours nous nous intéresserons à la complexité temporel.
+Regarder une video sur smartphone avec une latence de 10 seondes, c'est pas
+terrible..
 
-Connaître la complexité temporel d'un algorithme ne permet pas de connaître le
-temps mis à l’exécution car il dépend de la machine utilisée. Cependant la
-complexité correspond au comportement d'un algorithme, c'est à dire comment
-évolue le temps d’exécution en fonction de la taille des données.\ La complexité
-est toujours donnée en fonctions de certain type de calcul (opérations
-arithmétiques, affectations...)
+Parmi les facteurs de la latence se trouve la rapidité d'execution.  La
+complexité en temps vise à quantifier cette vitesse pour nous permettre de
+choisir des algorithmes adéquates.  C'est à vous de choisir raisonnablement la
+bonne mesure de complexité en fonction du problème.
+
+À partir du concept de comportement asymptotique, nous présentons les mesures de
+compexités suivantes:
+
+- **Coût amortie**
+
+- **Pire cas**
+
+- **Meilleur cas**
+
+- **Coût en moyenne**
 
 
 
-### Outils mathématiques
+### Comportement asymptotique
 
 La complexité s'exprime asymptotiquement (lorsque les données tendent vers
 l'infini) pour cela on va utilisé les notations suivante. Si $$f, g$$ sont des
@@ -41,22 +49,21 @@ $$a |g(x)| < |f(x)| < a |g(x)|$$
 
 
 
-### Différents coûts
-
-- **Pire cas** : c'est le coût lorsque le maximum d'opération est fait lors de l’exécution.
-
-- **Meilleur cas** : c'est le coût lorsque le minimum d'opération est fait lors de l’exécution.
-
-- **Coût en moyenne** : c'est la moyenne de tous les coûts possible, pondéré par leur probabilité.
-
-- **Coût amortie** : c'est le nombre d'opération moyen effectué lors d'appel multiple d'un algorithme.
-
-
-
 ### Coût amortie
 
-Il existe deux méthodes pour calculer le coût amortie d'un algorithme, la
-méthode par agrégats et la méthode par potentiel.
+Un coût amorti d'un algorithme est sa quantité moyenne d'opérations lors de son
+execution.
+
+Deux manières de le calculer:
+
+- la méthode des agrégats
+
+- la méthode par potentiels
+
+Utiliser un un coût amortie revient donc parfois à choisir entre ces deux
+méthodes.
+
+...
 
 
 
