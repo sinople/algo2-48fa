@@ -11,25 +11,38 @@
 
 ## Analyse du coût d'un algorithme
 
-### Qu'est ce la complexité ?
+### La complexité
 
-Un programme informatique utilise de la mémoire, consomme de l'énergie et prend
-un certain temps à l’exécution, c'est la complexité d'un algorithme. Dans la
-suite de ce cours nous nous intéresserons à la complexité temporel.
-
-Connaître la complexité temporel d'un algorithme ne permet pas de connaître le
-temps mis à l’exécution car il dépend de la machine utilisée. Cependant la
-complexité correspond au comportement d'un algorithme, c'est à dire comment
-évolue le temps d’exécution en fonction de la taille des données.\ La complexité
-est toujours donnée en fonctions de certain type de calcul (opérations
-arithmétiques, affectations...)
+Regarder une vidéo sur smartphone avec une latence de 10 secondes, c'est pas
+terrible...
 
 
+https://www.youtube.com/watch?feature=player_embedded&v=QS6ywFGcLSk
 
-### Outils mathématiques
+Parmi les facteurs de la latence se trouve la rapidité d’exécution.  La
+complexité en temps vise à quantifier cette vitesse pour nous permettre de
+choisir des algorithmes adéquates.  C'est à vous de choisir raisonnablement la
+bonne mesure de complexité en fonction du problème.
+
+À partir du concept de comportement asymptotique, nous présentons les mesures de
+complexités suivantes:
+
+
+- **Pire cas**
+
+- **Meilleur cas**
+
+- **Coût en moyenne**
+
+- **Coût amorti**
+
+
+
+
+### Comportement asymptotique
 
 La complexité s'exprime asymptotiquement (lorsque les données tendent vers
-l'infini) pour cela on va utilisé les notations suivante. Si $$f, g$$ sont des
+l'infini) pour cela on va utiliser les notations suivantes. Si $$f, g$$ sont des
 fonctions alors:
 
 $$f=O(g)$$ si il existe $$a>0 $$ tel que pour tout $$x$$, $$|f(x)| < a |g(x)|$$
@@ -40,24 +53,36 @@ $$f=\Theta (g)$$ si il existe $$a>0$$ et $$b>0$$ tel que pour tout $$x$$ on a :
 $$a |g(x)| < |f(x)| < a |g(x)|$$
 
 
+### Pire cas
 
-### Différents coûts
+Pour certain argument l'algorithme peut prendre plus de temps. Le pire cas correspond à la meilleure majoration du nombre de calculs de l'algorithme.
 
-- **Pire cas** : c'est le coût lorsque le maximum d'opération est fait lors de l’exécution.
 
-- **Meilleur cas** : c'est le coût lorsque le minimum d'opération est fait lors de l’exécution.
 
-- **Coût en moyenne** : c'est la moyenne de tous les coûts possible, pondéré par leur probabilité.
+### Meilleur cas
 
-- **Coût amorti** : c'est le nombre d'opération moyen effectué lors d'appel multiple d'un algorithme.
+Pour certain argument l'algorithme peut prendre moins de temps. Le meilleur cas correspond à la meilleure minoration du nombre de calculs de l'algorithme.
+
+
+
+### Coût en moyenne
+
+Le coût en moyenne d'un algorithme est le coût que l'on peut espérer avoir lors de l'execution de l'algorithme.
 
 
 
 ### Coût amorti
 
-Il existe deux méthodes pour calculer le coût amorti d'un algorithme, la
-méthode par agrégats et la méthode par potentiel.
+Un coût amorti d'un algorithme est la quantité moyenne d'opérations des executions successifs de celui-ci.
 
+Deux manières de le calculer:
+
+- la méthode des agrégats
+
+- la méthode par potentiels
+
+Calculer le coût amorti revient donc parfois à choisir entre ces deux
+méthodes.
 
 
 #### Méthode par agrégats
@@ -144,26 +169,39 @@ le pire cas, le meilleur cas ?  Quel est le coût amorti de la fonction incr ?
 
 ~~~
 
+
+
 ## Structures de données
 
-Il existe différentes façon de traiter des données, chacunes ayant leurs caractéristiques.
-Pour chaque structures de données on doit pouvoir rechercher, insérer, supprimer un élément.
-Cette partie traitera différentes structures et le coût des fonctions rechercher, insérer et supprimer..
+Les sites internets tel que Wikipédia gère beaucoup de données, et on est content de pouvoir accéder à ces données de manière instantanée.
+
+La raison de cette rapidité est l'utilisation judicieuse de différentes structures de données.
+
+Pour chaque structures de données on doit pouvoir **rechercher, insérer, supprimer** un élément.
+
+Cette partie traitera différentes structures et le coût des fonctions rechercher, insérer et supprimer.
 
 ### Tableau
 
-Cette structures permet de stocker des données dans un espace prédéfini.
-Chaque tableau prend une place dans la mémoire, défini lors de la création du tableau.
-Selon si le tableau est trié ou non les différentes opérations ne prennent pas le même temps.
+Un tableau est une juxtaposition de données dans un espace de taille fini. Les données sont accessibles par leur index (ou indice). Les éléments placé à un indice donné sont accessibles immédiatement.
 
+Le tableau peut être soit trié, soit non trié.
 
-Cas du tableau non trié : 
-- insertion : $$O(1)$$
+Les performances des tableaux seront étudiés dans le cas où il n'existe pas de bijection immédiate entre un élément et sont index.
+
+#### Tableau non trié : 
+
+Ce type de tableau est utilisé lorsque l'ordre d'apparition des éléments a une importance.
+
+- insertion : si le tableau n'est pas remplie $$O(1)$$. Sinon $$O(n)$$ car il faut reconstruire un tableau plus grand.
 - recherche : $$O(n)$$
 - suppression : $$O(n)$$ ( car il faut d'abord trouver l'élement puis décaler les éléments les plus à droites)
 
 
-Cas du tableau trié : 
+#### Tableau trié : 
+
+Ce type de tableau est utilisé lorsque l'ordre d'apparition des éléments n'a pas une importance.
+
 - insertion : $$O(n)$$ 
 - recherche : $$O(log(n))$$ (recherche par dichotomie)
 - suppression : $$O(n)$$
@@ -171,10 +209,85 @@ Cas du tableau trié :
 
 ### Listes
 
+Une liste est une succession d'éléments, en quantité non défini. Chaque élément est constitué d'une donnée et de l'endroit où se trouve la donnée suivante.
+Toutes listes se finissent par un élément ne possédant pas de successeur.
+
+Les listes seront utilisés lorsque l'on ne connaît pas le nombre d'éléments à l'avance ou si l'on utilise des algorithmes récursifs.
+
+#### Notations
+
+Pour pouvoir manipuler les listes ont utilisera les notations suivantes :
+- **[]** : liste vide
+- $$[x_0, x_1, ..., x_n]$$ : c'est la liste des éléments $$x_0, x_1, ..., x_n$$
+- **hd** : head, la tête de la liste, soit le premier élément. Si la liste est vide il n'y a pas de premier élément.
+- **tl** : tail, la queue de la liste, ces la listes composé de tous les élément sauf de la tête.
+- **+** : opérateur de concaténation. Par exemple L=hd(L) + tl(L)
+
+#### Complexité des opérations
+
+- insertion : $$O(1)$$ (l'élément insérer devient la tête). $$O(n)$$ si la liste est triée.
+- recherche : $$O(n)$$
+- suppression : $$O(n)$$
+
+
+~~~ question
+
+Soient L une liste et x un élément.
+Donner des algorithmes récursives pour l'insertion, la recherche et la suppression.
+
+~~~
+
+~~~ answer
+
+```
+Insertion(L, x) = return (x+L);
+```
+
+```
+Suppression(L, x)  
+|Si L == [] alors return []
+|Sinon  
+| |Si hd(L) == x alors return(Suppression(tl(L),x))  
+| |Sinon return ( hd(L) + Suppression(tl(L), x) )
+```
+
+```
+Rechercher(L, x)
+|Si L == [] alors return false
+|Sinon 
+| |Si hd(L) == x alors return true
+| |Sinon return Rechercher(tl(L), x)
+```
+
+~~~
 
 
 ### Arbres
 
+Rechercher un élément dans une liste prend du temps si il y a plein d’éléments comme pour un dictionnaire. Les arbres permettent de régler ce problème.
+
+Un arbre est composé de noeuds. Tout les noeuds N possède une valeur (ou étiquette) noté N.E. Chaque noeud peut posséder des fils. Les fils d'un noeud sont des arbres, un noeud sans fils est une feuille. Un noeud N est le père d'un noeud n si n est un fils de N. Un noeud sans fils est une racine.
+
+
+
+
 #### ABR (Arbre Binaire de Recherche)
 
-#### AVL
+Un arbre binaire est un arbre dont chaque noeuds possède au plus deux fils, un fils gauche et un fils droit, notées respectivement N.G et N.D pour un noeud N.
+
+Un arbre binaire de recherche (abr) est défini inductivement par :
+- une feuille est un abr
+- si A.G et A.D sont des abr et A.E est plus grand que toutes les étiquettes de A.G et plus petit que toutes les étiquettes de A.D alors A est un abr.
+
+Pour un abr les opérations de recherche, insertion et suppresion ont pour coût :
+- insertion : pire cas $$O(n)$$, en moyenne $$O(log(n))$$
+- recherche : pire cas $$O(n)$$, en moyenne $$O(log(n))$$
+- suppression : pire cas $$O(n)$$, en moyenne $$O(log(n))$$
+
+Le pire cas arrive si l'arbre est presque linéaire (presque tout les noeuds ont un seul fils).
+
+#### AVL ou arbre équilibré
+
+Les AVL sont des abr particuliers qui permettent d'avoir les opérations d'insertion, recherche, suppression en $$O(log(n))$$.
+
+
