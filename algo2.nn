@@ -199,7 +199,7 @@ Ce type de tableau est utilisé lorsque l'ordre d'apparition des éléments a un
 
 - insertion : si le tableau n'est pas remplie $$O(1)$$. Sinon $$O(n)$$ car il faut reconstruire un tableau plus grand.
 - recherche : $$O(n)$$
-- suppression : $$O(n)$$ ( car il faut d'abord trouver l'élement puis décaler les éléments les plus à droites)
+- suppression : $$O(n)$$ ( car il faut d'abord trouver l’élément puis décaler les éléments les plus à droites)
 
 
 #### Tableau trié : 
@@ -274,7 +274,7 @@ Un arbre est composé de noeuds. Tout les noeuds N possède une valeur (ou étiq
 
 On définit la hauteur d'un arbre de manière inductive.
 La hauteur d'une feuille est un.
-Induction : la hauteur d'un noeuds est $$1+maximum(hauteur(fils gauche), hauteur(fils droit))$$
+Induction : la hauteur d'un noeud est $$1+maximum(hauteur(fils gauche), hauteur(fils droit))$$
 
 
 #### ABR (Arbre Binaire de Recherche)
@@ -355,7 +355,7 @@ On vas suivre l'indication et alors commencer par écrire le code suivant :
 ```
 Suppression(A, x)  
 | if A=Vide  
-| then raise erreur (abscence de l'élément x)  
+| then raise erreur (absence de l'élément x)  
 | else if A.E>x  
 | then suppression(A.G, x)  
 | else if A.E<x  
