@@ -9,6 +9,10 @@
 
 # Algorithmique et structures de données 2
 
+Ce cour fait suite au cour Algorithmique et structures de données 1.
+
+
+
 ## Analyse du coût d'un algorithme
 
 ### La complexité
@@ -173,7 +177,7 @@ le pire cas, le meilleur cas ?  Quel est le coût amorti de la fonction incr ?
 
 ## Structures de données
 
-Les sites internets tel que Wikipédia gère beaucoup de données, et on est content de pouvoir accéder à ces données de manière instantanée.
+Les sites internets tels que Wikipédia gère beaucoup de données, et on est content de pouvoir accéder à ces données de manière instantanée.
 
 La raison de cette rapidité est l'utilisation judicieuse de différentes structures de données.
 
@@ -268,7 +272,9 @@ Rechercher un élément dans une liste prend du temps si il y a plein d’élém
 
 Un arbre est composé de noeuds. Tout les noeuds N possède une valeur (ou étiquette) noté N.E. Chaque noeud peut posséder des fils. Les fils d'un noeud sont des arbres, un noeud sans fils est une feuille. Un noeud N est le père d'un noeud n si n est un fils de N. Un noeud sans fils est une racine.
 
-
+On définit la hauteur d'un arbre de manière inductive.
+La hauteur d'une feuille est un.
+Induction : la hauteur d'un noeuds est $$1+maximum(hauteur(fils gauche), hauteur(fils droit))$$
 
 
 #### ABR (Arbre Binaire de Recherche)
@@ -286,8 +292,119 @@ Pour un abr les opérations de recherche, insertion et suppresion ont pour coût
 
 Le pire cas arrive si l'arbre est presque linéaire (presque tout les noeuds ont un seul fils).
 
+~~~question
+
+Donner un exemple d'insertion successives rendant un arbre dont la recherche se fait en $$O(n)$$
+
+~~~
+
+~~~answer
+
+A:=vide
+for i in 1..n loop  
+| insertion(A, i)  
+end loop
+
+L'arbre obtenue est alors linéaire et c'est l'arbre : 1->2-> ... -> n
+
+~~~
+
+~~~question
+
+Soit A un abr, et x un élément munis d'une relation d'ordre.
+Donner un algorithme de recherche et d'insertion dans un abr.
+
+~~~
+
+~~~answer
+
+```
+Recherche(A,x)  
+| if A=Vide
+| then return false
+| else if A.E=x
+| then return true
+| else if A.E<x 
+| then return Recherche(A.D, x)
+| else return Recherche(A.G, x)
+```
+
+```
+Insertion(A,x)
+| if A=Vide
+| then return A=(E=>x, G=>Vide, D=>Vide)
+| else if A.E>x
+| then Insertion(A.G, x)
+| else Insertion(A.D, x)
+``` 
+
+~~~
+
+~~~question
+
+Donner un algorithme de suppression d'un élément dans un abr.
+
+Indication: On pourra étudier la suppression pour les cas 0, 1 ou 2 fils.
+
+~~~
+
+~~~answer
+
+On vas suivre l'indication et alors commencer par écrire le code suivant :
+
+```
+Suppression(A, x)  
+| if A=Vide  
+| then raise erreur (abscence de l'élément x)  
+| else if A.E>x  
+| then suppression(A.G, x)  
+| else if A.E<x  
+| then suppression(A.D, x)  
+| else  
+| | if A.G=Vide and A.D=Vide  
+| | then Suppression_0_fils(A)  
+| | else if A.G=Vide or A.D=Vide  
+| | then Suppression_1_fils(A)  
+| | else Suppression_2_fils(A)  
+```
+
+On implémente alors les fonctions auxiliaires utilisées
+
+```
+ Suppression_0_fils(A) = A=Vide
+```
+```
+Suppression_1_fils(A)
+| if A.G=Vide
+| then A=A.D
+| else A=A.G
+```
+
+Pour la suppression dans le cas où A à deux fils on fait remonter le plus petit élément de A.D à la place de A.E. On à alors besoin d'une fonction supplémentaire qui supprime le plus petit élément et renvoie sa valeur.
+
+```
+Supprime_min(A)
+|if A.G=Vide
+|then 
+| | min=A.E
+| | Suppression_1_fils(A)
+| | return min
+|else Supprime_min(A.G)
+```
+On peut alors enfin écrire
+
+```
+Suppression_2_fils(A)=( A.E=Supprime_min(A.D) )
+```
+
+~~~
+
+
 #### AVL ou arbre équilibré
 
 Les AVL sont des abr particuliers qui permettent d'avoir les opérations d'insertion, recherche, suppression en $$O(log(n))$$.
 
+Les AVL sont des abr et possèdent en plus la propriété suivante : pour chaque sous arbre, la hauteur du fils droit et du fils gauche diffèrent au plus de un.
+
+Dans le cas des AVL ont a la relation suivante entre la hauteur et le nombre de noeuds : $$h=log_2(n)$$
 
